@@ -13,10 +13,13 @@ const ImageContainerRoot = styled.div`
 
 export const Slot = styled.div`
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   bottom: 0;
   right: 0;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2rem;
+  width: 2rem;
   z-index: 5;
 `;
 
