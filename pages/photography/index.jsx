@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Gallery, GalleryItem } from '../components/Gallery';
-import { ImagePopup } from '../components/ImagePopup';
-import { Image, ImageContainer } from '../components/Image';
-import { getMedia } from '../db/data';
+import { Gallery } from '../../components/Gallery';
+import { ImagePopup } from '../../components/ImagePopup';
+import { Image, ImageContainer } from '../../components/Image';
+import { getMedia } from '../../db/data';
 
-export default function Home({ media }) {
+export default function Photography({ media }) {
   const [imageIndex, setImageIndex] = useState(null);
 
   const open = (index) => () => setImageIndex(index);
