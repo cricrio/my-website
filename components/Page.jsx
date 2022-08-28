@@ -1,16 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { Header } from './Header';
 
-const Grid = styled.div`
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: 1fr;
-  align-items: stretch;
+const Container = styled.div`
+  height: calc(100vh - 6rem);
+  margin: auto;
+  width: min(100%, 40rem);
 `;
 
-export const Page = ({ menu = null, children }) => (
-  <Grid>
-    {menu}
-    <div>{children}</div>
-  </Grid>
+export const Page = ({ children }) => (
+  <div>
+    <Header />
+    <Container>{children}</Container>
+  </div>
 );

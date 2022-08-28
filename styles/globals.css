@@ -12,9 +12,15 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   font-family: 'Zen Kaku Gothic Antique', sans-serif;
 
-  --border-radius: 0.25rem;
   height: 100vh;
   overflow-y: hidden;
+  --border-radius: 0.25rem;
+  --background-color: #1c2541;
+  --primary-color: #39a0ed;
+  --color: #ffffff;
+
+  color: var(--color);
+  background-color: var(--background-color);
 }
 
 input,
