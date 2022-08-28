@@ -34,7 +34,7 @@ export default function SkillPage({ skill, error }) {
       <VStack spacing={4} mb={8}>
         <Heading size='xl'>{_skill.title}</Heading>
         <HStack spacing={4}>
-          <Text fontSize='2xl'>{_skill.skill_categories.name}</Text>
+          <Text fontSize='2xl'>{_skill?.skill_categories?.name}</Text>
           <StatusTag
             status={_skill.status}
             onClick={isLoading ? null : () => mutate(_skill)}

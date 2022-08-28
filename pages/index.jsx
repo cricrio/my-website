@@ -1,4 +1,4 @@
-import fs from 'fs';
+// import fs from 'fs';
 import matter from 'gray-matter';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
@@ -7,30 +7,29 @@ import styled from 'styled-components';
 import Intro from '../components/Intro';
 import { Page } from '../components/Page';
 import { Layout } from '../components/PostLayout';
-import { postFilePaths, POSTS_PATH } from '../utils/mdx';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+// import { postFilePaths, POSTS_PATH } from '../utils/mdx';
+// import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Text = styled.p``;
 
 export default function Home({ posts }) {
-  const { t } = useTranslation();
-  return (
-    <Page>
-      <Text>{t('introduction')}</Text>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.filePath}>
-            <Link
-              as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-              href={`/posts/[slug]`}
-            >
-              <a>{post.data.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </Page>
-  );
+  // const { t } = useTranslation();
+  return 'patate';
+  // <Page>
+  //   <Text>{t('introduction')}</Text>
+  //   <ul>
+  //     {posts.map((post) => (
+  //       <li key={post.filePath}>
+  //         <Link
+  //           as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
+  //           href={`/posts/[slug]`}
+  //         >
+  //           <a>{post.data.title}</a>
+  //         </Link>
+  //       </li>
+  //     ))}
+  //   </ul>
+  // </Page>
 }
 
 const parseCreatedAt = ({ createdAt, ...data }) => ({
@@ -39,18 +38,18 @@ const parseCreatedAt = ({ createdAt, ...data }) => ({
 });
 
 export async function getStaticProps({ locale }) {
-  const posts = postFilePaths.map((filePath) => {
-    const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
+  // const posts = postFilePaths.map((filePath) => {
+  //   const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
 
-    const { content, data } = matter(source);
-    return {
-      content,
-      data: parseCreatedAt(data),
-      filePath,
-    };
-  });
+  //   const { content, data } = matter(source);
+  //   return {
+  //     content,
+  //     data: parseCreatedAt(data),
+  //     filePath,
+  //   };
+  // });
 
-  const localesProps = await serverSideTranslations(locale, ['common']);
+  // const localesProps = await serverSideTranslations(locale, ['common']);
 
-  return { props: { posts, ...localesProps } };
+  return { props: { posts: [] } };
 }
