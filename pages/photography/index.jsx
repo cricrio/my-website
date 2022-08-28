@@ -17,7 +17,7 @@ export default function Photography({ media }) {
       <div>
         <Gallery>
           {media.map((img, index) => (
-            <ImageContainer>
+            <ImageContainer key={img.uri}>
               <Image src={img.uri} onClick={open(index)} />
             </ImageContainer>
           ))}

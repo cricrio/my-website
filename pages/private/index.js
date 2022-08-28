@@ -64,10 +64,11 @@ export default function Private() {
         <Button onClick={onSave}>save</Button>
       </Header>
       <Gallery>
-        {list.map((image) => {
+        {list.map((image, index) => {
           const icon = image.private ? EyeSlash : Eye;
           return (
             <ImageContainer
+              key={index}
               slot={
                 <Icon
                   size='1.3rem'

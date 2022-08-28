@@ -34,7 +34,12 @@ const ListInput = ({ value = [], onChange }) => {
 
       {value?.length > 0 &&
         value.map((v) => (
-          <Flex justifyContent='space-between' gap={2} alignItems='center'>
+          <Flex
+            justifyContent='space-between'
+            gap={2}
+            alignItems='center'
+            key={v}
+          >
             <Editable defaultValue={v} margin={2}>
               <EditablePreview />
               <EditableInput />

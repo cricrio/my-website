@@ -31,7 +31,7 @@ export default function SkillList({ categories, error }) {
           </Heading>
           <Grid templateColumns='repeat(2, 1fr)' gap='4' mb='4'>
             {skills.map((s) => (
-              <GridItem>
+              <GridItem key={s.id}>
                 <SkillCard {...s} link={`/private/skills/${s.id}`} />
               </GridItem>
             ))}

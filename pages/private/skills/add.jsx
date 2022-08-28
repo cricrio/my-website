@@ -58,7 +58,11 @@ export default function AddSkill({ categories }) {
           <FormLabel>Category</FormLabel>
           <Select onChange={skillChangeHandler('category_id')}>
             {categories.map((c) => (
-              <option value={c.id} selected={c.id === skill.categorie}>
+              <option
+                value={c.id}
+                selected={c.id === skill.categorie}
+                key={c.id}
+              >
                 {c.name}
               </option>
             ))}
