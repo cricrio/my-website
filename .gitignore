@@ -14,7 +14,8 @@
 
 # production
 /build
-
+/public/workbox-*
+/public/sw.js
 # misc
 .DS_Store
 *.pem
