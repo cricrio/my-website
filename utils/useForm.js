@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const useForm = () => {
-  const [state, setState] = useState({});
+const useForm = (initialState = {}) => {
+  const [state, setState] = useState(initialState);
   const changeHandler =
     (name) =>
     ({ target: { value } }) =>

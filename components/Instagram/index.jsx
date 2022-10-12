@@ -14,7 +14,12 @@ const Iframe = styled.iframe`
 `;
 const InstagramPost = ({ url }) => (
   <Container>
-    <Iframe src={`${url}embed`} allowFullScreen height='100%' width='100%' />
+    <Iframe
+      src={'https://www.instagram.com/tv/Cf_gqHjOwq9/' || `${url}embed`}
+      allowFullScreen
+      height='100%'
+      width='100%'
+    />
   </Container>
 );
 
