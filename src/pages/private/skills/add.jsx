@@ -14,7 +14,7 @@ import { useState } from 'react';
 import ListInput from '~/components/ListInput';
 
 import { Page } from '~/components/Page';
-import useForm from '~/src/utils/useForm';
+import useForm from '~/utils/useForm';
 
 export default function AddSkill({ categories }) {
   const router = useRouter();
@@ -83,12 +83,4 @@ export default function AddSkill({ categories }) {
       </VStack>
     </Page>
   );
-}
-
-export async function getStaticProps() {
-  const { data: categories } = await supabase
-    .from('skill_categories')
-    .select('id, name');
-
-  return { props: { categories } };
 }

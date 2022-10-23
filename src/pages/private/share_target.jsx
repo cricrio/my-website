@@ -12,7 +12,7 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Page } from '~/components/Page';
 import { parse } from 'node-html-parser';
 import InstagramCard from '~/components/InstagramCard';
-import useForm from '~/src/utils/useForm';
+import useForm from '~/utils/useForm';
 import Select from '~/components/Select';
 
 export default function Bookmark({ metas }) {

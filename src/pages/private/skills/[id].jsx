@@ -54,29 +54,29 @@ export default function SkillPage({ skill, error }) {
   );
 }
 
-export async function getStaticProps({ params: { id } }, supabase) {
-  const { data: skill, error } = await supabase
-    .from('skills')
-    .select(
-      'id, title, description,status, skill_categories (name), skill_videos (id, video_src)}'
-    )
-    .eq('id', id)
-    .maybeSingle();
+// export async function getStaticProps({ params: { id } }, supabase) {
+//   const { data: skill, error } = await supabase
+//     .from('skills')
+//     .select(
+//       'id, title, description,status, skill_categories (name), skill_videos (id, video_src)}'
+//     )
+//     .eq('id', id)
+//     .maybeSingle();
 
-  if (error) return { props: { error } };
+//   if (error) return { props: { error } };
 
-  return {
-    props: {
-      skill,
-    },
-  };
-}
+//   return {
+//     props: {
+//       skill,
+//     },
+//   };
+// }
 
-export async function getStaticPaths() {
-  const { data: skills } = await supabase.from('skills').select('id');
+// export async function getStaticPaths() {
+//   const { data: skills } = await supabase.from('skills').select('id');
 
-  return {
-    paths: skills.map(({ id }) => ({ params: { id: `${id}` } })),
-    fallback: true,
-  };
-}
+//   return {
+//     paths: skills.map(({ id }) => ({ params: { id: `${id}` } })),
+//     fallback: true,
+//   };
+// }
