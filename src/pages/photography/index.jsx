@@ -4,7 +4,7 @@ import { ImagePopup } from '../../components/ImagePopup';
 import { Image, ImageContainer } from '../../components/Image';
 
 const getMedia = () => [];
-export default function Photography({ media }) {
+export default function Photography({ media = [] }) {
   const [imageIndex, setImageIndex] = useState(null);
 
   const open = (index) => () => setImageIndex(index);
@@ -27,11 +27,11 @@ export default function Photography({ media }) {
   );
 }
 
-export async function getStaticProps() {
-  const media = await getMedia();
-  return {
-    props: {
-      media,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const media = await getMedia();
+//   return {
+//     props: {
+//       media,
+//     },
+//   };
+// }

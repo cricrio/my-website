@@ -22,7 +22,7 @@ export default function SkillList({ categories = [], error }) {
         </Button>
       </Flex>
 
-      {Object.entries(categories).map(([category, skills]) => (
+      {Object.entries(categories).map(([category, skills = []]) => (
         <>
           <Heading as='h3' size='lg' mb='4'>
             {category}

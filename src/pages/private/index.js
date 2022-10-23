@@ -53,7 +53,7 @@ const useList = (session) => {
 };
 export default function Private() {
   const user = useUser();
-  const [list, { onFilterChange, onPrivateChange, onSave }] = useList(session);
+  const [list, { onFilterChange, onPrivateChange, onSave }] = useList(user);
 
   return user ? (
     <>

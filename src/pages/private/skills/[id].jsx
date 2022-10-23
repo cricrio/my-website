@@ -10,14 +10,14 @@ import InstagramPost from '~/components/Instagram';
 import { Page } from '~/components/Page';
 import StatusTag from '~/components/StatusTag';
 
-export default function SkillPage({ skill, error }) {
+export default function SkillPage({ skill = {}, error }) {
   const mutate = ({ id, status }) =>
     supabase
       .from('skills')
       .update({ status: (status + 1) % 3 })
       .eq('id', id);
 
-  const _skill = { ...skill, ...(data?.data ? data?.data[0] : {}) };
+  const _skill = skill;
 
   if (error) {
     return JSON.stringify(error);
@@ -31,7 +31,7 @@ export default function SkillPage({ skill, error }) {
           <Text fontSize='2xl'>{_skill?.skill_categories?.name}</Text>
           <StatusTag
             status={_skill.status}
-            onClick={isLoading ? null : () => mutate(_skill)}
+            onClick={true ? null : () => mutate(_skill)}
           />
         </HStack>
       </VStack>

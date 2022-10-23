@@ -1,8 +1,8 @@
-import fs from 'fs';
-import matter from '../../utils/matter';
+// import fs from 'fs';
+// import matter from '../../utils/matter';
 // import { MDXRemote } from 'next-mdx-remote';
 // import { serialize } from 'next-mdx-remote/serialize';
-import path from 'path';
+// import path from 'path';
 import { PostLayout } from '../../components/PostLayout';
 import { postFilePaths, POSTS_PATH } from '../../utils/mdx';
 
@@ -10,7 +10,7 @@ import { postFilePaths, POSTS_PATH } from '../../utils/mdx';
 
 const serialize = (_) => _;
 
-export default function PostPage({ source, frontMatter }) {
+export default function PostPage({ source, frontMatter = {} }) {
   return (
     <PostLayout>
       <div className='post-header'>

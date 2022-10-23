@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-const SigningCallback = () => {
+export default function SigningCallback() {
   const router = useRouter();
-  router.push(router.query.redirectedFrom || '/');
-  return '...';
-};
+  useEffect(() => {
+    router.push(router.query.redirectedFrom || '/');
+  }, []);
 
-export default SigningCallback;
+  return '...';
+}

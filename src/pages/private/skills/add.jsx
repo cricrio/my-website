@@ -16,7 +16,7 @@ import ListInput from '~/components/ListInput';
 import { Page } from '~/components/Page';
 import useForm from '~/utils/useForm';
 
-export default function AddSkill({ categories }) {
+export default function AddSkill({ categories = [] }) {
   const router = useRouter();
   const supabase = useSupabaseClient();
   const [skill, skillChangeHandler] = useForm();
