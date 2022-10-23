@@ -8,20 +8,19 @@ import {
   Button,
   Heading,
 } from '@chakra-ui/react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ListInput from '~/components/ListInput';
 
 import { Page } from '~/components/Page';
-import { supabase } from '~/utils/supabaseClient';
-import useForm from '~/utils/useForm';
+import useForm from '~/src/utils/useForm';
 
 export default function AddSkill({ categories }) {
   const router = useRouter();
+  const supabase = useSupabaseClient();
   const [skill, skillChangeHandler] = useForm();
   const [skillVideos, onSkillVideoChange] = useState([]);
-
-  console.log({ skillVideos });
 
   const onSubmit = async (event) => {
     event.preventDefault();

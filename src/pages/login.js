@@ -1,10 +1,10 @@
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Box } from '../components/Box';
 import { Button } from '../components/Button';
 import { Center } from '../components/Center';
 import { Header } from '../components/Text';
-import { supabase } from '../utils/supabaseClient';
 
 const Form = styled.form`
   display: flex;
@@ -30,6 +30,7 @@ const Text = styled.div`
 `;
 
 export default function Auth() {
+  const supabase = useSupabaseClient();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
@@ -39,7 +40,7 @@ export default function Auth() {
 
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signIn({ email });
+      const { error } = await supabase.auth.signInWithOtp({ email });
       if (error) {
         setMessage({ error: true, content: error.message });
       } else {

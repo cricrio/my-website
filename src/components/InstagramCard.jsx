@@ -8,7 +8,9 @@ const InstagramCard = ({ description, image }) => (
     maxWidth='300px'
   >
     <Image src={image} width='100%' />
-    <Text padding={4}>{description}</Text>
+    <Box padding={4}>
+      <Text noOfLines={3}>{description}</Text>
+    </Box>
   </Box>
 );
 

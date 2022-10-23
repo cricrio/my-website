@@ -6,22 +6,16 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { useMutation } from '@tanstack/react-query';
 import InstagramPost from '~/components/Instagram';
 import { Page } from '~/components/Page';
 import StatusTag from '~/components/StatusTag';
-import { supabase } from '~/utils/supabaseClient';
-
-const updateSkillStatus = ({ id, status }) =>
-  supabase
-    .from('skills')
-    .update({ status: (status + 1) % 3 })
-    .eq('id', id);
 
 export default function SkillPage({ skill, error }) {
-  const { mutate, data, isLoading } = useMutation(updateSkillStatus, {
-    mutationKey: 'updateSkillStatus',
-  });
+  const mutate = ({ id, status }) =>
+    supabase
+      .from('skills')
+      .update({ status: (status + 1) % 3 })
+      .eq('id', id);
 
   const _skill = { ...skill, ...(data?.data ? data?.data[0] : {}) };
 
@@ -60,7 +54,7 @@ export default function SkillPage({ skill, error }) {
   );
 }
 
-export async function getStaticProps({ params: { id } }) {
+export async function getStaticProps({ params: { id } }, supabase) {
   const { data: skill, error } = await supabase
     .from('skills')
     .select(

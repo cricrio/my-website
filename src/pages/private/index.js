@@ -4,11 +4,11 @@ import { Gallery } from '../../components/Gallery';
 import { Header } from '../../components/Header';
 import { Image, ImageContainer } from '../../components/Image';
 import { NotAuthorizedPage } from '../../components/NotAuthorizedPage';
-import { useGetAuth } from '../../context/auth';
 import { getMedia, updateMedia } from '../../utils/data';
 import Eye from '../../icons/eye.svg';
 import EyeSlash from '../../icons/eye-slash.svg';
 import { Icon } from '../../components/Icon';
+import { useUser } from '@supabase/auth-helpers-react';
 
 const useList = (session) => {
   const [filter, setFilter] = useState([true, false]);
@@ -52,10 +52,10 @@ const useList = (session) => {
   ];
 };
 export default function Private() {
-  const session = useGetAuth();
+  const user = useUser();
   const [list, { onFilterChange, onPrivateChange, onSave }] = useList(session);
 
-  return session ? (
+  return user ? (
     <>
       <Header position='fixed'>
         <Button onClick={onFilterChange([true, false])}>all</Button>

@@ -1,13 +1,11 @@
 import { Button, Flex, Grid, GridItem, Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
+import { Page } from '~/components/Page';
 import SkillCard from '~/components/SkillCard';
-import { supabase } from '~/utils/supabaseClient';
-import { Header } from '../../../components/Header';
-import { Page } from '../../../components/Page';
 
-export default function SkillList({ categories, error }) {
+export default function SkillList({ categories = [], error }) {
   const router = useRouter();
+
   if (error) {
     return JSON.stringify(error);
   }
@@ -42,20 +40,22 @@ export default function SkillList({ categories, error }) {
   );
 }
 
-export async function getStaticProps() {
-  const { data: skills, error } = await supabase
-    .from('skills')
-    .select('id, title, status, skill_categories (name)');
+// export async function getStaticProps() {
+//   const supabase = createServerSupabaseClient();
 
-  if (error) {
-    return { props: { error } };
-  }
+//   const { data: skills, error } = await supabase
+//     .from('skills')
+//     .select('id, title, status, skill_categories (name)');
 
-  // Group the skills by category
-  const categories = skills.reduce((acc, item) => {
-    const category = item.skill_categories?.name ?? 'Other';
-    return { ...acc, [category]: [...(acc[category] || []), item] };
-  }, {});
+//   if (error) {
+//     return { props: { error } };
+//   }
 
-  return { props: { categories } };
-}
+//   // Group the skills by category
+//   const categories = skills.reduce((acc, item) => {
+//     const category = item.skill_categories?.name ?? 'Other';
+//     return { ...acc, [category]: [...(acc[category] || []), item] };
+//   }, {});
+
+//   return { props: { categories } };
+// }

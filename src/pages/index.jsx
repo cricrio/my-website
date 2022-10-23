@@ -1,4 +1,5 @@
 // import fs from 'fs';
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import matter from 'gray-matter';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
@@ -14,7 +15,18 @@ const Text = styled.p``;
 
 export default function Home({ posts }) {
   // const { t } = useTranslation();
-  return 'patate';
+  const supabase = useSupabaseClient();
+  const data = useUser();
+  console.log(data);
+  return (
+    <button
+      onClick={async () => {
+        const aa = await supabase.auth.signOut();
+      }}
+    >
+      LOG OUT !!
+    </button>
+  );
   // <Page>
   //   <Text>{t('introduction')}</Text>
   //   <ul>

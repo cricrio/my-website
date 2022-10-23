@@ -1,6 +1,5 @@
 import {
   Button,
-  Divider,
   FormControl,
   FormLabel,
   Heading,
@@ -8,23 +7,23 @@ import {
   Textarea,
   VStack,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import InstagramPost from '~/components/Instagram';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+
 import { Page } from '~/components/Page';
-import { supabase } from '~/utils/supabaseClient';
 import { parse } from 'node-html-parser';
 import InstagramCard from '~/components/InstagramCard';
-import useForm from '~/utils/useForm';
+import useForm from '~/src/utils/useForm';
 import Select from '~/components/Select';
 
 export default function Bookmark({ metas }) {
-  const router = useRouter();
+  const supabase = useSupabaseClient();
+
   const [skill, skillChangeHandler] = useForm(metas);
 
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const res = await supabase.from('bookmarks').insert([
+    await supabase.from('bookmarks').insert([
       {
         title: skill.title,
         description: skill.description,
@@ -33,12 +32,11 @@ export default function Bookmark({ metas }) {
         image: skill.image,
       },
     ]);
-    console.log(res);
   };
 
   return (
     <Page>
-      <Heading mb='2' size='xl'>
+      <Heading mb='4' size='xxl'>
         Import from instagram
       </Heading>
       <VStack onSubmit={onSubmit} as='form'>
@@ -70,8 +68,12 @@ export default function Bookmark({ metas }) {
 
         <Button type='submit'>Submit</Button>
       </VStack>
-
-      <InstagramCard {...skill} />
+      <Heading mb='4' size='xxl'>
+        Preview
+      </Heading>
+      <VStack>
+        <InstagramCard {...skill} />
+      </VStack>
     </Page>
   );
 }
@@ -98,7 +100,7 @@ export async function getServerSideProps({ query }) {
     }),
     {}
   );
-  console.log(metas);
+
   return {
     props: {
       metas: {

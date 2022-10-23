@@ -16,6 +16,8 @@
 /build
 /public/workbox-*
 /public/sw.*
+/public/sw.js.map
+
 # misc
 .DS_Store
 *.pem
