@@ -1,4 +1,5 @@
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Box } from '../components/Box';
@@ -30,6 +31,7 @@ const Text = styled.div`
 `;
 
 export default function Auth() {
+  const router = useRouter();
   const supabase = useSupabaseClient();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
@@ -37,10 +39,32 @@ export default function Auth() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    console.log({
+      email,
+      ...(router.query.redirectedFrom
+        ? {
+            options: {
+              emailRedirectTo:
+                'http://localhost:3000/' + router.query.redirectedFrom,
+            },
+          }
+        : {}),
+    });
+    const queryParams = new URLSearchParams();
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signInWithOtp({ email });
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        ...(router.query.redirectedFrom
+          ? {
+              options: {
+                emailRedirectTo:
+                  'http://localhost:3000/callback?redirectedFrom=' +
+                  router.query.redirectedFrom,
+              },
+            }
+          : {}),
+      });
       if (error) {
         setMessage({ error: true, content: error.message });
       } else {

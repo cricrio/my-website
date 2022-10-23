@@ -29,7 +29,7 @@
     }
   ],
   "share_target": {
-    "action": "/bookmark/",
+    "action": "/private/share_target/",
     "method": "GET",
     "params": {
       "title": "title",
