@@ -10,7 +10,7 @@ export default function Bookmarks({ bookmarks }) {
       </Heading>
       <Grid templateColumns='repeat(3, 1fr)' gap={6}>
         {bookmarks.map((bookmark) => (
-          <GridItem>
+          <GridItem key={bookmark.id}>
             <InstagramCard {...bookmark} />
           </GridItem>
         ))}
